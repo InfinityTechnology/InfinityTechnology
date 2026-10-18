@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfinityTechnology · 个人游戏生涯展示手册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e17;--bg2:#0f1524;--panel:#131b2e;--panel2:#182238;
+  --line:rgba(120,170,255,.14);--line2:rgba(120,170,255,.28);
+  --txt:#dbe4f5;--dim:#8b98b8;--faint:#5a6784;
+  --acc:#4fc3f7;--acc2:#7c8cff;--gold:#e8c574;--red:#ff6b6b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Noto Sans SC',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:var(--acc);text-decoration:none}
+
+/* ---------- COVER ---------- */
+.cover{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;
+  background:radial-gradient(ellipse 80% 55% at 50% -10%,rgba(60,90,180,.28),transparent 60%),
+             radial-gradient(ellipse 60% 40% at 80% 100%,rgba(79,195,247,.10),transparent 60%),
+             linear-gradient(180deg,#0a0e17 0%,#0c1220 60%,#0a0e17 100%)}
+.stars{position:absolute;inset:0;background-image:
+  radial-gradient(1px 1px at 12% 22%,rgba(255,255,255,.7),transparent),
+  radial-gradient(1px 1px at 28% 68%,rgba(255,255,255,.45),transparent),
+  radial-gradient(1.5px 1.5px at 41% 13%,rgba(255,255,255,.6),transparent),
+  radial-gradient(1px 1px at 55% 84%,rgba(255,255,255,.4),transparent),
+  radial-gradient(1px 1px at 63% 31%,rgba(255,255,255,.65),transparent),
+  radial-gradient(1.5px 1.5px at 76% 57%,rgba(255,255,255,.5),transparent),
+  radial-gradient(1px 1px at 88% 18%,rgba(255,255,255,.6),transparent),
+  radial-gradient(1px 1px at 94% 74%,rgba(255,255,255,.4),transparent),
+  radial-gradient(1px 1px at 7% 52%,rgba(255,255,255,.45),transparent),
+  radial-gradient(1.5px 1.5px at 33% 42%,rgba(255,255,255,.35),transparent);
+  pointer-events:none}
+.orbit-ring{position:absolute;border:1px solid rgba(120,170,255,.10);border-radius:50%;pointer-events:none}
+.o1{width:900px;height:900px;top:-420px;left:50%;transform:translateX(-50%)}
+.o2{width:600px;height:600px;top:-280px;left:50%;transform:translateX(-50%);border-color:rgba(120,170,255,.16)}
+.o3{width:1200px;height:1200px;top:-560px;left:50%;transform:translateX(-50%);border-style:dashed}
+.cover-tag{font-family:'Rajdhani';letter-spacing:.55em;text-transform:uppercase;font-size:13px;color:var(--acc);margin-bottom:26px}
+.cover-tag::before,.cover-tag::after{content:"—";color:var(--faint);margin:0 14px}
+.cover h1{font-family:'Orbitron';font-weight:900;font-size:clamp(38px,7vw,84px);letter-spacing:.04em;color:#fff;line-height:1.1}
+.cover h1 .thin{display:block;font-size:clamp(14px,2vw,22px);font-weight:500;letter-spacing:.7em;color:var(--dim);margin-top:18px;font-family:'Noto Sans SC'}
+.cover-sub{margin-top:34px;color:var(--dim);font-size:15px;letter-spacing:.12em}
+.cover-meta{margin-top:60px;display:flex;gap:0;border:1px solid var(--line2);border-radius:6px;overflow:hidden;backdrop-filter:blur(4px)}
+.cm{padding:16px 38px;border-right:1px solid var(--line2)}
+.cm:last-child{border-right:none}
+.cm .n{font-family:'Orbitron';font-size:26px;font-weight:700;color:var(--acc)}
+.cm .l{font-size:12px;color:var(--faint);letter-spacing:.25em;margin-top:2px}
+.scroll-hint{position:absolute;bottom:34px;color:var(--faint);font-size:11px;letter-spacing:.4em;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ---------- LAYOUT ---------- */
+.wrap{max-width:1160px;margin:0 auto;padding:0 40px}
+section{padding:110px 0}
+.sec-head{margin-bottom:64px;position:relative}
+.sec-no{font-family:'Orbitron';font-size:13px;color:var(--acc);letter-spacing:.4em;margin-bottom:12px}
+.sec-head h2{font-size:34px;font-weight:700;color:#fff;letter-spacing:.06em}
+.sec-head h2 span{color:var(--acc)}
+.sec-head::after{content:"";display:block;width:64px;height:2px;background:linear-gradient(90deg,var(--acc),transparent);margin-top:20px}
+.lead{color:var(--dim);max-width:760px;margin-top:18px;font-size:15.5px}
+
+/* ---------- PROFILE ---------- */
+.profile-grid{display:grid;grid-template-columns:340px 1fr;gap:48px;align-items:start}
+.avatar-card{background:linear-gradient(160deg,var(--panel),var(--bg2));border:1px solid var(--line2);border-radius:14px;padding:38px 32px;text-align:center;position:relative;overflow:hidden}
+.avatar-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--acc),var(--acc2))}
+.avatar{width:120px;height:120px;margin:0 auto 22px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron';font-weight:900;font-size:44px;color:#04121e;
+  background:linear-gradient(135deg,var(--acc),var(--acc2));box-shadow:0 0 50px rgba(79,195,247,.35)}
+.avatar-card h3{font-family:'Orbitron';font-size:22px;color:#fff;letter-spacing:.05em}
+.avatar-card .role{color:var(--gold);font-size:13px;letter-spacing:.3em;margin-top:8px}
+.avatar-card .site{margin-top:18px;font-size:12.5px;color:var(--dim);word-break:break-all}
+.pstats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.pstat{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px}
+.pstat .n{font-family:'Orbitron';font-size:20px;color:var(--acc);font-weight:700}
+.pstat .l{font-size:11px;color:var(--faint);letter-spacing:.2em;margin-top:2px}
+.bio h3{color:#fff;font-size:19px;margin-bottom:14px;font-weight:500}
+.bio p{color:var(--dim);font-size:15px;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{border:1px solid var(--line2);color:var(--txt);border-radius:99px;padding:6px 16px;font-size:13px;background:rgba(79,195,247,.05)}
+.chip b{color:var(--acc);font-weight:500}
+.timeline-mini{margin-top:34px;border-left:2px solid var(--line2);padding-left:22px;display:grid;gap:16px}
+.tm-item{position:relative}
+.tm-item::before{content:"";position:absolute;left:-28px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--acc)}
+.tm-item .y{font-family:'Orbitron';font-size:13px;color:var(--acc)}
+.tm-item .t{color:var(--txt);font-size:14px}
+
+/* ---------- CRAFT CARD ---------- */
+.craft{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding:52px 0;border-top:1px solid var(--line)}
+.craft:last-child{border-bottom:1px solid var(--line)}
+.craft.flip .c-img{order:2}
+.c-img{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line2);background:var(--panel)}
+.c-img img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform .6s ease}
+.craft:hover .c-img img{transform:scale(1.04)}
+.c-rank{position:absolute;top:14px;left:14px;background:rgba(6,12,24,.82);backdrop-filter:blur(6px);border:1px solid var(--line2);
+  font-family:'Orbitron';font-size:12px;color:var(--gold);padding:6px 14px;border-radius:99px;letter-spacing:.12em}
+.c-body .c-cat{display:inline-block;font-size:11.5px;letter-spacing:.3em;color:var(--acc);border:1px solid rgba(79,195,247,.35);padding:4px 12px;border-radius:3px;margin-bottom:16px;text-transform:uppercase}
+.c-body h3{font-family:'Orbitron','Noto Sans SC';font-size:24px;color:#fff;font-weight:700;letter-spacing:.03em}
+.c-body .c-sub{color:var(--gold);font-size:13.5px;margin-top:6px;letter-spacing:.08em}
+.c-body p{color:var(--dim);font-size:14.5px;margin-top:18px}
+.c-specs{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.spec{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:8px 14px;font-size:12.5px;color:var(--dim)}
+.spec b{color:var(--acc);font-family:'Rajdhani';font-weight:700;font-size:15px;margin-right:6px}
+.c-quote{margin-top:20px;padding:14px 18px;border-left:2px solid var(--gold);background:rgba(232,197,116,.05);color:var(--gold);font-size:13.5px;font-style:italic;border-radius:0 6px 6px 0}
+.c-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:'Rajdhani';font-weight:600;font-size:14px;letter-spacing:.15em;color:var(--acc);border-bottom:1px solid transparent;transition:.2s}
+.c-link:hover{border-color:var(--acc)}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+.gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+
+/* ---------- chapters ---------- */
+.chapter{background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line)}
+.chapter.alt{background:var(--bg)}
+
+/* ---------- stats band ---------- */
+.band{background:linear-gradient(90deg,#0d1526,#131e38 50%,#0d1526);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:64px 0}
+.band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+.band .n{font-family:'Orbitron';font-size:40px;font-weight:900;color:var(--acc)}
+.band .n.gold{color:var(--gold)}
+.band .l{color:var(--faint);font-size:12.5px;letter-spacing:.28em;margin-top:8px}
+
+/* ---------- footer ---------- */
+footer{padding:90px 0 70px;text-align:center}
+footer .f-title{font-family:'Orbitron';font-size:22px;color:#fff;letter-spacing:.1em}
+footer .f-line{width:50px;height:2px;background:var(--acc);margin:24px auto}
+footer p{color:var(--dim);font-size:14px}
+footer .f-small{color:var(--faint);font-size:12px;margin-top:22px;letter-spacing:.1em}
+.f-links{display:flex;justify-content:center;gap:34px;margin-top:30px;font-family:'Rajdhani';font-weight:600;letter-spacing:.15em}
+
+@media(max-width:900px){
+  .wrap{padding:0 22px}
+  .craft,.profile-grid{grid-template-columns:1fr}
+  .craft.flip .c-img{order:0}
+  .gallery{grid-template-columns:1fr 1fr}
+  .band-grid{grid-template-columns:1fr 1fr;gap:40px}
+  section{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 封面 ============ -->
+<div class="cover">
+  <div class="stars"></div>
+  <div class="orbit-ring o1"></div><div class="orbit-ring o2"></div><div class="orbit-ring o3"></div>
+  <div class="cover-tag">Gaming Career Portfolio</div>
+  <h1>INFINITY<br>TECHNOLOGY<span class="thin">个 人 游 戏 生 涯 展 示 手 册</span></h1>
+  <div class="cover-sub">Juno: New Origins · SimpleRockets.com</div>
+  <div class="cover-meta">
+    <div class="cm"><div class="n">7.7+</div><div class="l">年 创 作 历 程</div></div>
+    <div class="cm"><div class="n">867</div><div class="l">关 注 者</div></div>
+    <div class="cm"><div class="n">24</div><div class="l">公 开 作 品</div></div>
+    <div class="cm"><div class="n">100K+</div><div class="l">累 计 下 载</div></div>
+  </div>
+  <div class="scroll-hint">▼ SCROLL ▼</div>
+</div>
+
+<!-- ============ 01 关于我 ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no">CHAPTER 01</div>
+      <h2>关于 <span>InfinityTechnology</span></h2>
+    </div>
+    <div class="profile-grid">
+      <div class="avatar-card">
+        <div class="avatar">∞</div>
+        <h3>InfinityTechnology</h3>
+        <div class="role">MOD · 载具复刻创作者</div>
+        <div class="pstats">
+          <div class="pstat"><div class="n">867</div><div class="l">FOLLOWERS</div></div>
+          <div class="pstat"><div class="n">7.7年</div><div class="l">JOINED</div></div>
+          <div class="pstat"><div class="n">24</div><div class="l">POSTS</div></div>
+          <div class="pstat"><div class="n">2019</div><div class="l">SINCE</div></div>
+        </div>
+        <div class="site">simplerockets.com/u/InfinityTechnology</div>
+      </div>
+      <div class="bio">
+        <h3>你好，我是 InfinityTechnology</h3>
+        <p>我是一名深耕于《Juno: New Origins》（原 SimpleRockets 2）社区的载具建模创作者。自 2019 年初发布第一个作品以来，我在这个平台上持续创作了七年有余，发布了 24 个公开作品，累计获得超过 867 位玩家的关注，作品总下载量突破 10 万次。</p>
+        <p>我的创作横跨多个领域——从严格考据的<b style="color:var(--txt)">航空复刻</b>（波音 747、安-225、SOFIA 机载天文台），到硬核还原的<b style="color:var(--txt)">舰船系列</b>（俾斯麦号、大和号、泰坦尼克号、远望六号），再到恢弘的<b style="color:var(--txt)">科幻舰队</b>（光环系列 UNSC 无尽号、秋之柱二号）以及《流浪地球》主题创作（行星发动机、领航员号、550W MOSS）。</p>
+        <p>其中，与社区伙伴协作完成的 N747NA SOFIA 项目是我投入精力最多的"疯狂工程"——51758 个零件、可手动启动的发动机程序、可追踪目标的望远镜，向 2022 年退役的真实 SOFIA 机载天文台致敬。这是我在这个社区最珍视的回忆之一。</p>
+        <div class="chips">
+          <div class="chip"><b>≈50K</b> 最高单作零件数</div>
+          <div class="chip"><b>18.6K</b> 长征十一号下载量</div>
+          <div class="chip"><b>Featured</b> 俾斯麦号获社区精选</div>
+          <div class="chip"><b>合作</b> 多人协作项目经验</div>
+          <div class="chip"><b>跨域</b> 天空/海洋/太空全领域</div>
+        </div>
+        <div class="timeline-mini">
+          <div class="tm-item"><div class="y">2019.02</div><div class="t">创作起点 — 首个作品《The Earth Engine 流浪地球行星发动机》发布</div></div>
+          <div class="tm-item"><div class="y">2019 – 2020</div><div class="t">舰队时代 — 泰坦尼克、大和号、俾斯麦号等历史名舰系列陆续登场</div></div>
+          <div class="tm-item"><div class="y">2021 – 2022</div><div class="t">巅峰之作 — UNSC 无尽号、秋之柱二号、SOFIA 天文台相继发布</div></div>
+          <div class="tm-item"><div class="y">2024</div><div class="t">回归与玩心 — 550W MOSS、宝骏悦也、《植物大战僵尸》主题创作</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 数据带 ============ -->
+<div class="band">
+  <div class="wrap band-grid">
+    <div><div class="n">51,758</div><div class="l">最高单作零件数 · SOFIA</div></div>
+    <div><div class="n gold">9,940</div><div class="l">SOFIA 下载量</div></div>
+    <div><div class="n">211</div><div class="l">最高单作点赞 · SOFIA</div></div>
+    <div><div class="n gold">24</div><div class="l">全部公开作品</div></div>
+  </div>
+</div>
+
+<!-- ============ 02 代表作 ============ -->
+<section id="masterpieces" class="chapter">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no">CHAPTER 02</div>
+      <h2>巅峰代表作 <span>Masterpieces</span></h2>
+      <p class="lead">四件投入最多心血的作品——它们定义了我在这个社区的创作高度。</p>
+    </div>
+
+    <!-- SOFIA -->
+    <div class="craft">
+      <div class="c-img"><span class="c-rank">★ No.1 · 点赞 211</span><img src="assets/t_sofia.png" alt="N747NA SOFIA"></div>
+      <div class="c-body">
+        <span class="c-cat">Aircraft · 航空复刻 · 团队协作</span>
+        <h3>N747NA SOFIA</h3>
+        <div class="c-sub">平流层红外天文台 · 2022 · 零件数 51,758</div>
+        <p>将 NASA 与 DLR 联合运营的波音 747SP 机载天文台完整复刻进游戏：5 万余零件、座舱仪表实时加载、可手动执行的完整发动机启动流程（附启动手册）、AG6 开启舱门后望远镜可自动追踪地图中锁定的目标，甚至内置故障模拟模式。另附 6 个降零件版本（11,609 – 38,184 零件）供不同设备游玩。</p>
+        <p>这是与我最"疯狂"的项目——十余位社区伙伴分工协作：主建模、座舱技术、仪表建模、地勤基地、测试……向 2022 年 9 月 29 日完成最后科学飞行而退役的真机致敬。</p>
+        <div class="c-quote">"This is a crazy project I ever done… I love this game, FOREVER."</div>
+        <div class="c-specs">
+          <span class="spec"><b>51,758</b>零件</span>
+          <span class="spec"><b>9,940</b>下载</span>
+          <span class="spec"><b>211</b>点赞</span>
+          <span class="spec"><b>16+</b>协作者</span>
+        </div>
+        <a class="c-link" href="https://www.simplerockets.com/c/h6Snmh/N747NA-SOFIA" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <!-- UNSC INFINITY -->
+    <div class="craft flip">
+      <div class="c-img"><span class="c-rank">★ No.2 · 点赞 168</span><img src="assets/t_infinity.png" alt="UNSC INFINITY"></div>
+      <div class="c-body">
+        <span class="c-cat">Sci-Fi · 科幻 · 光环系列</span>
+        <h3>U.N.S.C. INFINITY</h3>
+        <div class="c-sub">UNSC 旗舰 · 2021 · 舰长 707m</div>
+        <p>《光环》世界观中人类建造的最大星际战舰。搭载 45 台引擎、142.7MN 总推力，支持垂直悬浮模式、常规/跃迁引擎切换，并附带可释放、可独立驾驶的 Strident 级护卫舰机库。发布时配套制作了 YouTube / Bilibili 双平台预告片。</p>
+        <div class="c-quote">"It's been four years since the war ended. Today, we launched a vessel designed for battle, but now we redefine its purpose — peace."</div>
+        <div class="c-specs">
+          <span class="spec"><b>707m</b>舰体长度</span>
+          <span class="spec"><b>45</b>引擎</span>
+          <span class="spec"><b>168</b>点赞</span>
+          <span class="spec"><b>2021</b>春节发布</span>
+        </div>
+        <a class="c-link" href="https://www.simplerockets.com/c/Cqphlg/U-N-S-C-INFINITY" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <!-- Pillar of Autumn II -->
+    <div class="craft">
+      <div class="c-img"><span class="c-rank">★ No.3 · 点赞 111</span><img src="assets/t_autumn.png" alt="UNSC Pillar Of Autumn II"></div>
+      <div class="c-body">
+        <span class="c-cat">Sci-Fi · 科幻 · 一年磨一舰</span>
+        <h3>U.N.S.C. Pillar Of Autumn II</h3>
+        <div class="c-sub">秋级重型巡洋舰首舰 · 2022 · 全版本 39,637 零件</div>
+        <p>自无尽号发布当日起动工，历时整整一年完成。舰桥（8,278 零件）、冷冻甲板（7,664 零件）、二号机库（3,516 零件）均可作为独立场景模块下载，配合 4 档降零件版本，尽力让所有设备都能登舰体验"接近《光环：战斗进化》重制版关卡"的氛围。</p>
+        <div class="c-quote">"There was only one ship." — "One? Are you sure?"</div>
+        <div class="c-specs">
+          <span class="spec"><b>39,637</b>全版本零件</span>
+          <span class="spec"><b>7</b>可选模块版本</span>
+          <span class="spec"><b>111</b>点赞</span>
+          <span class="spec"><b>365天</b>制作周期</span>
+        </div>
+        <a class="c-link" href="https://www.simplerockets.com/c/3jBq3V/U-N-S-C-Pillar-Of-Autumn-II" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <!-- CZ-11 -->
+    <div class="craft flip">
+      <div class="c-img"><span class="c-rank">★ No.4 · 下载 18,663</span><img src="assets/t_cz11.png" alt="Navigator CZ-11"></div>
+      <div class="c-body">
+        <span class="c-cat">Rocket · 航天 · 流浪地球</span>
+        <h3>Navigator CZ-11 Rocket</h3>
+        <div class="c-sub">领航者号运载火箭 · 2021 · 全站下载量最高作品</div>
+        <p>基于《流浪地球》电影设定图的重制版运载火箭。借助 Designer Tools 模组精修外形，Space 一键触发完整发射程序；一子级分离后可亲自驾驶上面级，投放小型飞船至轨道。Delta-V 达 42.3km/s，是兼顾颜值与可玩性的太空之门。</p>
+        <div class="c-specs">
+          <span class="spec"><b>18,663</b>下载</span>
+          <span class="spec"><b>5,448</b>零件</span>
+          <span class="spec"><b>42.3km/s</b>ΔV</span>
+          <span class="spec"><b>81</b>点赞</span>
+        </div>
+        <a class="c-link" href="https://www.simplerockets.com/c/bza31y/Navigator-CZ-11-Rocket" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 作品全集 ============ -->
+<section id="fleet" class="chapter alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no">CHAPTER 03</div>
+      <h2>作品全集 <span>The Collection</span></h2>
+      <p class="lead">按主题分类的完整作品档案，每件均附原始介绍与数据。</p>
+    </div>
+
+    <!-- 海洋巨舰 -->
+    <h3 style="font-size:22px;color:#fff;margin:10px 0 6px">⚓ 海洋巨舰 <span style="color:var(--faint);font-size:14px;font-weight:300">— 历史名舰系列</span></h3>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_bismarck.png" alt="K.M.S Bismarck"></div>
+      <div class="c-body">
+        <span class="c-cat">Boat · 二战德军旗舰 · Featured 精选</span>
+        <h3>K.M.S Bismarck</h3>
+        <div class="c-sub">俾斯麦号战列舰 · 2019 · 10,000 零件</div>
+        <p>二战德国海军传奇战列舰的完整复刻。作品页附有详尽的舰史考据——从 1941 年"莱茵演习"行动击沉胡德号，到 5 月 27 日在布雷斯特以西 400 海里沉没的全程。游戏中可操纵主炮（Slider1/2）、释放水上飞机（AG1），最高航速约 15m/s，需高水质物理。</p>
+        <div class="c-specs"><span class="spec"><b>10,000</b>零件</span><span class="spec"><b>107</b>点赞</span><span class="spec"><b>★</b>社区精选</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/o5gqNz/K-M-S-Bismarck" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_yamato.png" alt="Battleship Yamato"></div>
+      <div class="c-body">
+        <span class="c-cat">Boat · 大和号 · 14,755 零件</span>
+        <h3>Battleship Yamato</h3>
+        <div class="c-sub">大和号战列舰 · 2019 · 耗时一个月</div>
+        <p>号称日本海军象征的超级战列舰。14,755 零件的全细节版本，从 1941 年首射主炮到 1945 年"天一号作战"特攻沉没的完整舰史均收录于作品页。Slider1/2 可操纵主炮与防空炮（部分火炮可发射炮弹）。</p>
+        <div class="c-specs"><span class="spec"><b>14,755</b>零件</span><span class="spec"><b>61</b>点赞</span><span class="spec"><b>1个月</b>制作</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/230eMm/Battleship-Yamato" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_musashi.png" alt="Battleship Musashi"></div>
+      <div class="c-body">
+        <span class="c-cat">Boat · 武藏号 · 设备友好版</span>
+        <h3>Battleship Musashi</h3>
+        <div class="c-sub">大和级二号舰 · 2019 · 8,841 零件</div>
+        <p>利用大和号舰体改制的"周末即兴之作"：零件数降至设备友好水平，火炮可逐门射击，还可弹射两架水上侦察机——"当你试飞它们时，会是一件令人兴奋的事"。</p>
+        <div class="c-specs"><span class="spec"><b>8,841</b>零件</span><span class="spec"><b>40</b>点赞</span><span class="spec"><b>1,922</b>下载</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/Uh9hwV/Battleship-Musashi" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_titanic.png" alt="R.M.S Titanic"></div>
+      <div class="c-body">
+        <span class="c-cat">Boat · 传奇邮轮 · 早期成名作</span>
+        <h3>R.M.S Titanic</h3>
+        <div class="c-sub">泰坦尼克号 · 2019 · 连续一周赶工完成</div>
+        <p>白星航运皇家邮轮的完整复刻，附完整海难史考据。"经过一周不间断的建造，她终于从我的电脑里完工了。"</p>
+        <div class="c-specs"><span class="spec"><b>3,999</b>零件</span><span class="spec"><b>75</b>点赞</span><span class="spec"><b>4,892</b>下载</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/T36mjO/R-M-S-Titanic" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_langley.png" alt="USS Langley"></div>
+      <div class="c-body">
+        <span class="c-cat">Carrier · 美国海军首艘航母</span>
+        <h3>U.S.S. CV-1 Langley</h3>
+        <div class="c-sub">兰利号航空母舰 · 2020 · 9,066 零件</div>
+        <p>由运煤船"木星号"改装的美国海军第一艘航空母舰。全通式木质飞行甲板、可升降机（AG1）、烟囱旋转（AG2）、对空警戒模式（AG4）。甲板上的舰载机（T4M 鱼雷机、F3F、SBU，均由社区伙伴提供）可分离甲板后真实起飞！</p>
+        <div class="c-specs"><span class="spec"><b>9,066</b>零件</span><span class="spec"><b>77</b>点赞</span><span class="spec"><b>✈</b>舰载机可起飞</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/3709ou/U-S-S-CV-1-Langley" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_carrier.png" alt="An Aircraft Carrier"></div>
+      <div class="c-body">
+        <span class="c-cat">Carrier · 早期舰队工程复活版</span>
+        <h3>An Aircraft Carrier</h3>
+        <div class="c-sub">"Janmitz 级"航空母舰 · 2020 · 793 零件</div>
+        <p>早期海军工程系列作品，随游戏版本更新修复浮力与动力系统后重新发布。4 部升降机、偏导板、弹射器与着舰系统一应俱全，是低配设备体验航母操作的好选择。</p>
+        <div class="c-specs"><span class="spec"><b>793</b>零件</span><span class="spec"><b>43</b>点赞</span><span class="spec"><b>3</b>后继衍生</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/jF3s7v/An-Aircraft-Carrier" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_yuanwang.png" alt="Yuanwang VI"></div>
+      <div class="c-body">
+        <span class="c-cat">Vessel · 中国航天 · 远望六号</span>
+        <h3>Yuanwang VI Space Surveying Vessel</h3>
+        <div class="c-sub">远望六号航天测量船 · 2019 · 创作生涯首作期</div>
+        <p>中国自主设计建造的第三代航天远洋测量船，满载排水量 25,000 吨，可抗 12 级风。2018 年 5 月曾赴太平洋执行嫦娥四号中继星"鹊桥"的测控任务。甲板大型 TT&C 测控设备、直升机库与泳池均有呈现。</p>
+        <div class="c-specs"><span class="spec"><b>2,941</b>零件</span><span class="spec"><b>52</b>点赞</span><span class="spec"><b>2019.03</b>发布</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/BRT75I/Yuanwang-VI-Space-Surveying-Vessel" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_patrol.png" alt="Little Patrol Boat"></div>
+      <div class="c-body">
+        <span class="c-cat">Boat · 小品 · 夏日闲情</span>
+        <h3>Little Patrol Boat</h3>
+        <div class="c-sub">小型巡逻艇 · 2020 · 基于 Pedro 的 1 零件小船</div>
+        <p>轻量级休闲小品：Slider1 控制动力、油门控制烟效，"Happy In Summer!"</p>
+        <div class="c-specs"><span class="spec"><b>999</b>零件</span><span class="spec"><b>41</b>点赞</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/64yMJ6/Little-Patrol-Boat" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <!-- 天空之翼 -->
+    <h3 style="font-size:22px;color:#fff;margin:56px 0 6px">✈ 天空之翼 <span style="color:var(--faint);font-size:14px;font-weight:300">— 航空复刻系列</span></h3>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_sfairlines.png" alt="SF Airlines 747"></div>
+      <div class="c-body">
+        <span class="c-cat">Aircraft · 顺丰航空 · 8,068 零件</span>
+        <h3>S.F Airlines — Boeing 747</h3>
+        <div class="c-sub">半货机构型 · 2020 · 国航 747 的全面重制</div>
+        <p>在前作国航 747 基础上重建了错误的内饰与起落架。客舱设有餐食服务（"来点汉堡和薯条哈哈"），驾驶舱是全机最精细的区域，仪表显示屏均为真实功能件。AG 控制涵盖客舱门、APU 与发动机启动、灯光与起落架。</p>
+        <div class="c-specs"><span class="spec"><b>8,068</b>零件</span><span class="spec"><b>176</b>点赞</span><span class="spec"><b>🛫</b>可飞</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/SO8q9n/S-F-Airlines-Boeing-747" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_airchina.png" alt="Air China 747"></div>
+      <div class="c-body">
+        <span class="c-cat">Aircraft · 中国国航 · 747 系列起点</span>
+        <h3>Air China — Boeing 747</h3>
+        <div class="c-sub">波音 747 客机 · 2019 ·"747 的外观有种独特的魅力"</div>
+        <p>"747 系客机是我最喜欢的机型之一……我的旅行梦想就是坐一次 747。"这件作品成为后来顺丰版与 SOFIA 项目的技术起点。</p>
+        <div class="c-specs"><span class="spec"><b>43</b>点赞</span><span class="spec"><b>2019.07</b>发布</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/73I237/Air-China-Boeing-747" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_an225.png" alt="Antonov An-225"></div>
+      <div class="c-body">
+        <span class="c-cat">Aircraft · 世界上最大的飞机</span>
+        <h3>Antonov An-225</h3>
+        <div class="c-sub">安-225 梦想运输机 · 2019 · 创作生涯早期作品</div>
+        <p>为驮运"暴风雪"号航天飞机而生、全世界仅建成一架的安-225。作品页附其从 1988 年首飞到苏联航天计划中止的完整背景故事。</p>
+        <div class="c-specs"><span class="spec"><b>537</b>零件</span><span class="spec"><b>41</b>点赞</span><span class="spec"><b>2019.02</b>发布</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/9f7QW9/Antonov-An-225" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <!-- 星辰大海 -->
+    <h3 style="font-size:22px;color:#fff;margin:56px 0 6px">🚀 星辰大海 <span style="color:var(--faint);font-size:14px;font-weight:300">— 航天与科幻系列</span></h3>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_earthengine.png" alt="The Earth Engine"></div>
+      <div class="c-body">
+        <span class="c-cat">Rocket · 流浪地球 · 创作生涯起点</span>
+        <h3>The Earth Engine</h3>
+        <div class="c-sub">行星发动机 · 2019 · 第一个公开作品</div>
+        <p>一切开始的地方。《流浪地球》中高达 11,000 米、一万座推动地球离开轨道的行星发动机。"它们是多么巨大而有力！——小心别在点火时直视喷口！"</p>
+        <div class="c-specs"><span class="spec"><b>454</b>零件</span><span class="spec"><b>40</b>点赞</span><span class="spec"><b>6+</b>后继衍生</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/R8V0H0/The-Earth-Engine" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_smac.png" alt="UNSC SMAC"></div>
+      <div class="c-body">
+        <span class="c-cat">Sci-Fi · 光环 · 轨道防御平台</span>
+        <h3>UNSC-SMAC</h3>
+        <c-sub style="display:block;color:var(--gold);font-size:13.5px;margin-top:6px">蒙克顿级轨道防御平台 · 2020 · 2,819 零件</c-sub>
+        <p>守卫地球的 MAC 电磁炮轨道平台。2552 年星盟舰队抵达地球时，开罗、雅典、马耳他三座重要 SMAC 参与防御作战。平台同时是 UNSC 星舰的补给站，设有两个对接口。游戏内 Cortana 会三次语音提示操作方式。</p>
+        <div class="c-specs"><span class="spec"><b>2,819</b>零件</span><span class="spec"><b>46</b>点赞</span><span class="spec"><b>🗣</b>Cortana 语音引导</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/Bf9rlf/UNSC-SMAC" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_causs.png" alt="Causs Cannon"></div>
+      <div class="c-body">
+        <span class="c-cat">Sci-Fi · 机动兵器</span>
+        <h3>Causs Positron Beam Orbital Cannon</h3>
+        <div class="c-sub">Causs 联合体阳电子炮轨道炮 · 2020 · 1,816 零件</div>
+        <p>作为星舰附属兵器设计、无自主推进但具备姿态调整能力的轨道炮系统：AG1 展开、油门+AG2 生成光束音效、油门+AG3 开火。</p>
+        <div class="c-specs"><span class="spec"><b>1,816</b>零件</span><span class="spec"><b>43</b>点赞</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/M23N60/Causs-Positron-Beam-Orbital-Cannon" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_legacyx.png" alt="Legacy X"></div>
+      <div class="c-body">
+        <span class="c-cat">Space Station · 人类最后的方舟</span>
+        <h3>Legacy X · "The Wand"</h3>
+        <div class="c-sub">魔杖形世代飞船 · 2019 · 3,269m 巨构</div>
+        <p>灵感来自一部短片中的巨型空间站——地球与人类最后的希望，承载所有物种的种子与胚胎。外观如魔杖，故名"The Wand"。AG10 启动重力环，油门+Space 点燃引擎。拥有 7 个后继衍生作品。</p>
+        <div class="c-specs"><span class="spec"><b>3,269m</b>长度</span><span class="spec"><b>870</b>零件</span><span class="spec"><b>7</b>后继衍生</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/VqyAZT/Legacy-X" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_tw1.png" alt="TW-1 Q"></div>
+      <div class="c-body">
+        <span class="c-cat">Rocket · 中国航天 · Q 版趣味作</span>
+        <h3>TW-1 Q-Version</h3>
+        <div class="c-sub">Q 版天问一号 · 2020 · 带它去 Cylero 探索吧</div>
+        <p>可爱化的天问一号：正常方式发射，AG1-5 按标注说明配合 Slider1 操作。小贴士：别碰 Slider2，最好降落在平坦区域！</p>
+        <div class="c-specs"><span class="spec"><b>1,336</b>零件</span><span class="spec"><b>44</b>点赞</span><span class="spec"><b>64.9km/s</b>ΔV</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/dY80Ai/TW-1-Q-Version" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <!-- 陆地与玩心 -->
+    <h3 style="font-size:22px;color:#fff;margin:56px 0 6px">🚗 陆地与玩心 <span style="color:var(--faint);font-size:14px;font-weight:300">— 地面载具与趣味小品</span></h3>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_moss.png" alt="550W MOSS"></div>
+      <div class="c-body">
+        <span class="c-cat">Sci-Fi · 流浪地球2 · 量子计算机</span>
+        <h3>550W MOSS</h3>
+        <div class="c-sub">MOSS 量子计算机 · 2024 · 可自动追踪目标</div>
+        <p>"让人类永远保持理智，确实是一种奢求。"550W 即 MOSS——自我意识、自我迭代、自我更新的强人工智能。摆放后锁定目标即可自动追踪，连移动目标也不在话下（追踪程序由 TL0SR2 提供）。</p>
+        <div class="c-quote">"MOSS 从未叛变，只是忠实地执行被授权的指令。"</div>
+        <div class="c-specs"><span class="spec"><b>1,463</b>零件</span><span class="spec"><b>50</b>点赞</span><span class="spec"><b>🎯</b>自动追踪</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/6zig7c/550W-MOSS" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_yep.png" alt="SGMW Yep"></div>
+      <div class="c-body">
+        <span class="c-cat">Car · 现实座驾 · 我的真车复刻</span>
+        <h3>SGMW Yep · 宝骏悦也</h3>
+        <div class="c-sub">2024 · 一件新的突破之作</div>
+        <p>我把现实生活中自己驾驶的宝骏悦也搬进了游戏——"过去我选择在游戏里制作买不起的东西，这是一次新的突破！"个性化改装大半照搬实车：底盘调校、Vizzy 程序与车贴由伙伴协助完成。双闪按钮、增程发电机、前备箱、探照灯……细节全部可交互。</p>
+        <div class="c-specs"><span class="spec"><b>2,000</b>零件</span><span class="spec"><b>50</b>点赞</span><span class="spec"><b>⚡</b>纯电小型越野</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/a2iueo/SGMW-Yep" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_zombie.png" alt="Zombie on your lawn"></div>
+      <div class="c-body">
+        <span class="c-cat">Fun · 植物大战僵尸 · 彩蛋之作</span>
+        <h3>There's a zombie on your lawn</h3>
+        <div class="c-sub">《你的草坪上有僵尸》 · 2024 · 全作最轻量 · 261 零件</div>
+        <p>作品页完整收录了《植物大战僵尸》片尾曲《Zombies on Your Lawn》的全部歌词——"我只是一株向日葵，但我能为一整支步兵部队供能。" lighten up 的玩心之作。</p>
+        <div class="c-specs"><span class="spec"><b>261</b>零件</span><span class="spec"><b>46</b>点赞</span><span class="spec"><b>🌻</b>Sunflower</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/L3pm91/Theres-a-zombie-on-your-lawn" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft flip">
+      <div class="c-img"><img src="assets/t_stuart.png" alt="M5A1 Stuart"></div>
+      <div class="c-body">
+        <span class="c-cat">Tank · 二战装甲</span>
+        <h3>M5A1 "Stuart"</h3>
+        <div class="c-sub">斯图亚特轻型坦克 · 2020 · 4,910 零件 · 履带可行走</div>
+        <p>1940 年代美国 M5 系列轻型坦克，配备陀螺稳定器的 37mm 主炮可在行进间准确射击。可动履带是亮点——也因此需要限速以防履带"断损"（最高约 7m/s）。</p>
+        <div class="c-specs"><span class="spec"><b>4,910</b>零件</span><span class="spec"><b>50</b>点赞</span><span class="spec"><b>⚙</b>可动履带</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/CF4y47/M5A1-Stuart" target="_blank">查看作品页 →</a>
+      </div>
+    </div>
+
+    <div class="craft">
+      <div class="c-img"><img src="assets/t_sofia.png" alt="SOFIA low"></div>
+      <div class="c-body">
+        <span class="c-cat">Family · SOFIA 项目族谱</span>
+        <h3>SOFIA 项目衍生作品群</h3>
+        <div class="c-sub">一个项目 · 一整个生态</div>
+        <p>SOFIA 项目不止于主机：6 档降零件版本、帕姆代尔空军基地场景、GREAT 光谱仪、望远镜模块、波音 747 模块化起落架、PW-JT9D 发动机、牵引车……共同构成了完整的"行星系"。</p>
+        <div class="c-specs"><span class="spec"><b>10+</b>衍生作品</span><span class="spec"><b>6</b>降配版本</span></div>
+        <a class="c-link" href="https://www.simplerockets.com/c/h6Snmh/N747NA-SOFIA" target="_blank">从主作品进入 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 创作理念 ============ -->
+<section id="philosophy" class="chapter">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-no">CHAPTER 04</div>
+      <h2>创作理念 <span>Philosophy</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px" class="philo-grid">
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:34px 28px">
+        <div style="font-size:30px;margin-bottom:16px">🔭</div>
+        <h3 style="color:#fff;font-size:17px;font-weight:500;margin-bottom:12px">考据先行</h3>
+        <p style="color:var(--dim);font-size:14px">每一件复刻作品背后都是完整的史料挖掘——舰史、机组、任务日志，甚至连主炮的膛压数据都会写进作品介绍。游戏之外，也是一次历史与科普的转译。</p>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:34px 28px">
+        <div style="font-size:30px;margin-bottom:16px">⚙️</div>
+        <h3 style="color:#fff;font-size:17px;font-weight:500;margin-bottom:12px">可玩性优先</h3>
+        <p style="color:var(--dim);font-size:14px">好看只是起点：手动启动程序、可追踪的望远镜、可起飞的舰载机、可逐门射击的火炮……所有交互都配 AG 说明文档，并坚持为低配设备提供降零件版本。</p>
+      </div>
+      <div style="background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:34px 28px">
+        <div style="font-size:30px;margin-bottom:16px">🤝</div>
+        <h3 style="color:#fff;font-size:17px;font-weight:500;margin-bottom:12px">与社区同行</h3>
+        <p style="color:var(--dim);font-size:14px">SOFIA 项目 16 位协作者、秋之柱的多方技术支持、每篇作品页末尾的致谢名单——这个社区最珍贵的从不是零件数，而是一起造船的人。</p>
+      </div>
+    </div>
+    <div style="margin-top:56px;padding:44px 48px;border:1px solid var(--line2);border-radius:14px;background:linear-gradient(135deg,rgba(79,195,247,.06),rgba(124,140,255,.04))">
+      <p style="font-size:17px;color:var(--txt);line-height:2">"This is a crazy project I ever done. It also includes many co-operators' hard working, I will never forget this project and the people joined in. <b style="color:var(--gold)">I love this game, FOREVER.</b>"</p>
+      <p style="color:var(--faint);font-size:13px;margin-top:14px;letter-spacing:.1em">—— InfinityTechnology，写于 N747NA SOFIA 发布之际</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="f-title">∞ INFINITYTECHNOLOGY</div>
+    <div class="f-line"></div>
+    <p>七年创作 · 二十四件作品 · 一个对游戏与社区永远热爱的玩家</p>
+    <div class="f-links">
+      <a href="https://www.simplerockets.com/u/InfinityTechnology" target="_blank">个人主页 ↗</a>
+      <a href="https://www.simplerockets.com/u/InfinityTechnology/Posts?t=1&best=True" target="_blank">作品集 ↗</a>
+    </div>
+    <p class="f-small">本手册基于 SimpleRockets.com 公开页面信息整理制作 · 图片素材来自作者作品页 · 2026.10</p>
+  </div>
+</footer>
+
+</body>
+</html>
